@@ -12,14 +12,36 @@ namespace Random_Password_Generator
         [STAThread]
         static void Main(string[] args)
         {
-            string ver = "0.0.3";
+            string ver = "0.0.4";
             Console.Title = $"Random Password Generator by Adiks, wersja {ver}";
-            for (; ; )
+            for (;;)
             {
                 bool spr = false;
                 int dlg = 0;
+                char wybor = '0';
 
-                while (!spr)
+                Console.Clear();
+
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("----------Wybierz-typ-losowego-hasła----------");
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("- 1. Małe litery                             -");
+                Console.WriteLine("- 2. Duże litery                             -");
+                Console.WriteLine("- 3. Małe i duże litery                      -");
+                Console.WriteLine("- 4. Cyfry                                   -");
+                Console.WriteLine("- 5. Cyfry i małe litery                     -");
+                Console.WriteLine("- 6. Cyfry i duże litery                     -");
+                Console.WriteLine("- 7. Cyfry, małe litery i duże litery        -");
+                Console.WriteLine("- 8. Cyfry, małe litery, duże litery i znaki -");
+                Console.WriteLine("- 9. Wyjdź z programu                        -");
+                Console.WriteLine("----------------------------------------------");
+                Console.Write("Wybor: ");
+
+                wybor = Console.ReadKey().KeyChar;
+
+                Console.Clear();
+
+                while (!spr && wybor != '9')
                 {
                     Console.Write("Wprowadź długość hasła: ");
                     string dlugosc = Console.ReadLine();
@@ -37,25 +59,7 @@ namespace Random_Password_Generator
                     }
                 }
 
-                Console.Clear();
 
-                Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("----------Wybierz-typ-losowego-hasła----------");
-                Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("- 1. Małe litery                             -");
-                Console.WriteLine("- 2. Duże litery                             -");
-                Console.WriteLine("- 3. Małe i duże litery                      -");
-                Console.WriteLine("- 4. Cyfry                                   -");
-                Console.WriteLine("- 5. Cyfry i małe litery                     -");
-                Console.WriteLine("- 6. Cyfry i duże litery                     -");
-                Console.WriteLine("- 7. Cyfry, małe litery i duże litery        -");
-                Console.WriteLine("- 8. Cyfry, małe litery, duże litery i znaki -");
-                Console.WriteLine("- 9. BRAK                                    -");
-                Console.WriteLine("- 0. Wyjdź z programu                        -");
-                Console.WriteLine("----------------------------------------------");
-                Console.Write("Wybor: ");
-
-                char wybor = Console.ReadKey().KeyChar;
                 Random losuj = new Random();
                 StringBuilder builder = new StringBuilder();
 
@@ -157,6 +161,9 @@ namespace Random_Password_Generator
                             builder.Append(litera);
                         }
                         zakonczenie(builder.ToString());
+                        break;
+                    case '9':
+                        System.Environment.Exit(0);
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
